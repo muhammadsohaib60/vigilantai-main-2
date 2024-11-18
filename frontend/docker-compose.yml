@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: vigilantai/frontend:0.4  # Image name and tag from your script
+    build:
+      context: .  # Build the Docker image from the current directory
+      dockerfile: Dockerfile  # Make sure the Dockerfile is in the project directory
+    environment:
+      STREAMLIT_TOKEN: ${STREAMLIT_TOKEN:-vigilantai_test_token_1024}  # Default value if not set
+      VIGILANTAI_SERVICE_ACCOUNT_KEY: ${VIGILANTAI_SERVICE_ACCOUNT_KEY}  # Make sure this is set in .env or passed manually
+    ports:
+      - "8080:8080"  # Expose port 8080 to your local machine
+    # command: streamlit run app.py  # Command to run your Streamlit app
